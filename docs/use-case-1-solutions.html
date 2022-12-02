@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>G Solutions chapter 8 - use case 1 | An Introduction to Machine Learning</title>
+  <meta name="description" content="Course materials for An Introduction to Machine Learning" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="G Solutions chapter 8 - use case 1 | An Introduction to Machine Learning" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="figures/cover_image.png" />
+  <meta property="og:description" content="Course materials for An Introduction to Machine Learning" />
+  <meta name="github-repo" content="bioinformatics-training/intro-machine-learning-2019" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="G Solutions chapter 8 - use case 1 | An Introduction to Machine Learning" />
+  
+  <meta name="twitter:description" content="Course materials for An Introduction to Machine Learning" />
+  <meta name="twitter:image" content="figures/cover_image.png" />
+
+<meta name="author" content="Sudhakaran Prabakaran, Matt Wayland and Chris Penfold" />
+
+
+<meta name="date" content="2020-10-07" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="solutions-decision-trees.html"/>
+<link rel="next" href="solutions-linear-models.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About the course</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#overview"><i class="fa fa-check"></i><b>1.1</b> Overview</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#registration"><i class="fa fa-check"></i><b>1.2</b> Registration</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.3</b> Prerequisites</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#github"><i class="fa fa-check"></i><b>1.4</b> Github</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i><b>1.5</b> License</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#contact"><i class="fa fa-check"></i><b>1.6</b> Contact</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#colophon"><i class="fa fa-check"></i><b>1.7</b> Colophon</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#what-is-machine-learning"><i class="fa fa-check"></i><b>2.1</b> What is machine learning?</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#aspects-of-ml"><i class="fa fa-check"></i><b>2.2</b> Aspects of ML</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#what-actually-happened-under-the-hood"><i class="fa fa-check"></i><b>2.3</b> What actually happened under the hood</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html"><i class="fa fa-check"></i><b>3</b> Dimensionality reduction</a><ul>
+<li class="chapter" data-level="3.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#linear-dimensionality-reduction"><i class="fa fa-check"></i><b>3.1</b> Linear Dimensionality Reduction</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#interpreting-the-principle-component-axes"><i class="fa fa-check"></i><b>3.1.1</b> Interpreting the Principle Component Axes</a></li>
+<li class="chapter" data-level="3.1.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#horseshoe-effect"><i class="fa fa-check"></i><b>3.1.2</b> Horseshoe effect</a></li>
+<li class="chapter" data-level="3.1.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#pca-analysis-of-mammalian-development"><i class="fa fa-check"></i><b>3.1.3</b> PCA analysis of mammalian development</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#exercise-2.3."><i class="fa fa-check"></i><b>3.2</b> Exercise 2.3.</a></li>
+<li class="chapter" data-level="3.3" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#nonlinear-dimensionality-reduction"><i class="fa fa-check"></i><b>3.3</b> Nonlinear Dimensionality Reduction</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#stochasticity"><i class="fa fa-check"></i><b>3.3.1</b> Stochasticity</a></li>
+<li class="chapter" data-level="3.3.2" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#analysis-of-mammalian-development"><i class="fa fa-check"></i><b>3.3.2</b> Analysis of mammalian development</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="dimensionality-reduction.html"><a href="dimensionality-reduction.html#other-dimensionality-reduction-techniques"><i class="fa fa-check"></i><b>3.4</b> Other dimensionality reduction techniques</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>4</b> Clustering</a><ul>
+<li class="chapter" data-level="4.1" data-path="clustering.html"><a href="clustering.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="clustering.html"><a href="clustering.html#distance-metrics"><i class="fa fa-check"></i><b>4.2</b> Distance metrics</a></li>
+<li class="chapter" data-level="4.3" data-path="clustering.html"><a href="clustering.html#hierarchic-agglomerative"><i class="fa fa-check"></i><b>4.3</b> Hierarchic agglomerative</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="clustering.html"><a href="clustering.html#linkage-algorithms"><i class="fa fa-check"></i><b>4.3.1</b> Linkage algorithms</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="clustering.html"><a href="clustering.html#k-means"><i class="fa fa-check"></i><b>4.4</b> K-means</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="clustering.html"><a href="clustering.html#algorithm"><i class="fa fa-check"></i><b>4.4.1</b> Algorithm</a></li>
+<li class="chapter" data-level="4.4.2" data-path="clustering.html"><a href="clustering.html#choosing-initial-cluster-centres"><i class="fa fa-check"></i><b>4.4.2</b> Choosing initial cluster centres</a></li>
+<li class="chapter" data-level="4.4.3" data-path="clustering.html"><a href="clustering.html#choosingK"><i class="fa fa-check"></i><b>4.4.3</b> Choosing k</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="clustering.html"><a href="clustering.html#dbscan"><i class="fa fa-check"></i><b>4.5</b> DBSCAN</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="clustering.html"><a href="clustering.html#algorithm-1"><i class="fa fa-check"></i><b>4.5.1</b> Algorithm</a></li>
+<li class="chapter" data-level="4.5.2" data-path="clustering.html"><a href="clustering.html#implementation-in-r"><i class="fa fa-check"></i><b>4.5.2</b> Implementation in R</a></li>
+<li class="chapter" data-level="4.5.3" data-path="clustering.html"><a href="clustering.html#choosing-parameters"><i class="fa fa-check"></i><b>4.5.3</b> Choosing parameters</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="clustering.html"><a href="clustering.html#example-clustering-synthetic-data-sets"><i class="fa fa-check"></i><b>4.6</b> Example: clustering synthetic data sets</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="clustering.html"><a href="clustering.html#hierarchic-agglomerative-1"><i class="fa fa-check"></i><b>4.6.1</b> Hierarchic agglomerative</a></li>
+<li class="chapter" data-level="4.6.2" data-path="clustering.html"><a href="clustering.html#k-means-1"><i class="fa fa-check"></i><b>4.6.2</b> K-means</a></li>
+<li class="chapter" data-level="4.6.3" data-path="clustering.html"><a href="clustering.html#dbscan-1"><i class="fa fa-check"></i><b>4.6.3</b> DBSCAN</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="clustering.html"><a href="clustering.html#evaluating-cluster-quality"><i class="fa fa-check"></i><b>4.7</b> Evaluating cluster quality</a><ul>
+<li class="chapter" data-level="4.7.1" data-path="clustering.html"><a href="clustering.html#silhouetteMethod"><i class="fa fa-check"></i><b>4.7.1</b> Silhouette method</a></li>
+<li class="chapter" data-level="4.7.2" data-path="clustering.html"><a href="clustering.html#example---k-means-clustering-of-blobs-data-set"><i class="fa fa-check"></i><b>4.7.2</b> Example - k-means clustering of blobs data set</a></li>
+<li class="chapter" data-level="4.7.3" data-path="clustering.html"><a href="clustering.html#example---dbscan-clustering-of-noisy-moons"><i class="fa fa-check"></i><b>4.7.3</b> Example - DBSCAN clustering of noisy moons</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="clustering.html"><a href="clustering.html#example-gene-expression-profiling-of-human-tissues"><i class="fa fa-check"></i><b>4.8</b> Example: gene expression profiling of human tissues</a><ul>
+<li class="chapter" data-level="4.8.1" data-path="clustering.html"><a href="clustering.html#hierarchic-agglomerative-2"><i class="fa fa-check"></i><b>4.8.1</b> Hierarchic agglomerative</a></li>
+<li class="chapter" data-level="4.8.2" data-path="clustering.html"><a href="clustering.html#k-means-2"><i class="fa fa-check"></i><b>4.8.2</b> K-means</a></li>
+<li class="chapter" data-level="4.8.3" data-path="clustering.html"><a href="clustering.html#dbscan-2"><i class="fa fa-check"></i><b>4.8.3</b> DBSCAN</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="clustering.html"><a href="clustering.html#exercises"><i class="fa fa-check"></i><b>4.9</b> Exercises</a><ul>
+<li class="chapter" data-level="4.9.1" data-path="clustering.html"><a href="clustering.html#clusteringEx1"><i class="fa fa-check"></i><b>4.9.1</b> Exercise 1</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="nearest-neighbours.html"><a href="nearest-neighbours.html"><i class="fa fa-check"></i><b>5</b> Nearest neighbours</a><ul>
+<li class="chapter" data-level="5.1" data-path="clustering.html"><a href="clustering.html#introduction"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="nearest-neighbours.html"><a href="nearest-neighbours.html#classification-simulated-data"><i class="fa fa-check"></i><b>5.2</b> Classification: simulated data</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="nearest-neighbours.html"><a href="nearest-neighbours.html#knn-function"><i class="fa fa-check"></i><b>5.2.1</b> knn function</a></li>
+<li class="chapter" data-level="5.2.2" data-path="nearest-neighbours.html"><a href="nearest-neighbours.html#plotting-decision-boundaries"><i class="fa fa-check"></i><b>5.2.2</b> Plotting decision boundaries</a></li>
+<li class="chapter" data-level="5.2.3" data-path="nearest-neighbours.html"><a href="nearest-neighbours.html#bias-variance-tradeoff"><i class="fa fa-check"></i><b>5.2.3</b> Bias-variance tradeoff</a></li>
+<li class="chapter" data-level="5.2.4" data-path="nearest-neighbours.html"><a href="nearest-neighbours.html#choosing-k"><i class="fa fa-check"></i><b>5.2.4</b> Choosing <em>k</em></a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="nearest-neighbours.html"><a href="nearest-neighbours.html#example-on-the-iris-dataset"><i class="fa fa-check"></i><b>5.3</b> Example on the Iris dataset</a></li>
+<li class="chapter" data-level="5.4" data-path="nearest-neighbours.html"><a href="nearest-neighbours.html#knn-cell-segmentation"><i class="fa fa-check"></i><b>5.4</b> Classification: cell segmentation</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="nearest-neighbours.html"><a href="nearest-neighbours.html#cell-segmentation-data-set"><i class="fa fa-check"></i><b>5.4.1</b> Cell segmentation data set</a></li>
+<li class="chapter" data-level="5.4.2" data-path="nearest-neighbours.html"><a href="nearest-neighbours.html#data-splitting"><i class="fa fa-check"></i><b>5.4.2</b> Data splitting</a></li>
+<li class="chapter" data-level="5.4.3" data-path="nearest-neighbours.html"><a href="nearest-neighbours.html#identification-of-data-quality-issues"><i class="fa fa-check"></i><b>5.4.3</b> Identification of data quality issues</a></li>
+<li class="chapter" data-level="5.4.4" data-path="nearest-neighbours.html"><a href="nearest-neighbours.html#fit-model"><i class="fa fa-check"></i><b>5.4.4</b> Fit model</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="nearest-neighbours.html"><a href="nearest-neighbours.html#knn-regression"><i class="fa fa-check"></i><b>5.5</b> Regression</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="nearest-neighbours.html"><a href="nearest-neighbours.html#partition-data"><i class="fa fa-check"></i><b>5.5.1</b> Partition data</a></li>
+<li class="chapter" data-level="5.5.2" data-path="nearest-neighbours.html"><a href="nearest-neighbours.html#data-pre-processing"><i class="fa fa-check"></i><b>5.5.2</b> Data pre-processing</a></li>
+<li class="chapter" data-level="5.5.3" data-path="nearest-neighbours.html"><a href="nearest-neighbours.html#search-for-optimum-k"><i class="fa fa-check"></i><b>5.5.3</b> Search for optimum <em>k</em></a></li>
+<li class="chapter" data-level="5.5.4" data-path="nearest-neighbours.html"><a href="nearest-neighbours.html#use-model-to-make-predictions"><i class="fa fa-check"></i><b>5.5.4</b> Use model to make predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="clustering.html"><a href="clustering.html#exercises"><i class="fa fa-check"></i><b>5.6</b> Exercises</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="nearest-neighbours.html"><a href="nearest-neighbours.html#knnEx1"><i class="fa fa-check"></i><b>5.6.1</b> Exercise 1</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="svm.html"><a href="svm.html"><i class="fa fa-check"></i><b>6</b> Support vector machines</a><ul>
+<li class="chapter" data-level="6.1" data-path="clustering.html"><a href="clustering.html#introduction"><i class="fa fa-check"></i><b>6.1</b> Introduction</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="svm.html"><a href="svm.html#maximum-margin-classifier"><i class="fa fa-check"></i><b>6.1.1</b> Maximum margin classifier</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="svm.html"><a href="svm.html#support-vector-classifier"><i class="fa fa-check"></i><b>6.2</b> Support vector classifier</a></li>
+<li class="chapter" data-level="6.3" data-path="svm.html"><a href="svm.html#support-vector-machine"><i class="fa fa-check"></i><b>6.3</b> Support Vector Machine</a></li>
+<li class="chapter" data-level="6.4" data-path="svm.html"><a href="svm.html#example---training-a-classifier"><i class="fa fa-check"></i><b>6.4</b> Example - training a classifier</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="svm.html"><a href="svm.html#setup-environment"><i class="fa fa-check"></i><b>6.4.1</b> Setup environment</a></li>
+<li class="chapter" data-level="6.4.2" data-path="nearest-neighbours.html"><a href="nearest-neighbours.html#partition-data"><i class="fa fa-check"></i><b>6.4.2</b> Partition data</a></li>
+<li class="chapter" data-level="6.4.3" data-path="svm.html"><a href="svm.html#visualize-training-data"><i class="fa fa-check"></i><b>6.4.3</b> Visualize training data</a></li>
+<li class="chapter" data-level="6.4.4" data-path="svm.html"><a href="svm.html#define-a-custom-model"><i class="fa fa-check"></i><b>6.4.4</b> Define a custom model</a></li>
+<li class="chapter" data-level="6.4.5" data-path="svm.html"><a href="svm.html#model-cross-validation-and-tuning"><i class="fa fa-check"></i><b>6.4.5</b> Model cross-validation and tuning</a></li>
+<li class="chapter" data-level="6.4.6" data-path="svm.html"><a href="svm.html#prediction-performance-measures"><i class="fa fa-check"></i><b>6.4.6</b> Prediction performance measures</a></li>
+<li class="chapter" data-level="6.4.7" data-path="svm.html"><a href="svm.html#plot-decision-boundary"><i class="fa fa-check"></i><b>6.4.7</b> Plot decision boundary</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="svm.html"><a href="svm.html#example---regression"><i class="fa fa-check"></i><b>6.5</b> Example - regression</a></li>
+<li class="chapter" data-level="6.6" data-path="svm.html"><a href="svm.html#further-reading"><i class="fa fa-check"></i><b>6.6</b> Further reading</a></li>
+<li class="chapter" data-level="6.7" data-path="clustering.html"><a href="clustering.html#exercises"><i class="fa fa-check"></i><b>6.7</b> Exercises</a><ul>
+<li class="chapter" data-level="6.7.1" data-path="svm.html"><a href="svm.html#exercise-1"><i class="fa fa-check"></i><b>6.7.1</b> Exercise 1</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="decision-trees.html"><a href="decision-trees.html"><i class="fa fa-check"></i><b>7</b> Decision trees and random forests</a><ul>
+<li class="chapter" data-level="7.1" data-path="decision-trees.html"><a href="decision-trees.html#decision-trees-1"><i class="fa fa-check"></i><b>7.1</b> Decision Trees</a></li>
+<li class="chapter" data-level="7.2" data-path="decision-trees.html"><a href="decision-trees.html#random-forest"><i class="fa fa-check"></i><b>7.2</b> Random Forest</a></li>
+<li class="chapter" data-level="7.3" data-path="clustering.html"><a href="clustering.html#exercises"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="use-case-1.html"><a href="use-case-1.html"><i class="fa fa-check"></i><b>8</b> Use case 1</a><ul>
+<li class="chapter" data-level="8.1" data-path="clustering.html"><a href="clustering.html#introduction"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="use-case-1.html"><a href="use-case-1.html#problem-automated-detection-of-malaria"><i class="fa fa-check"></i><b>8.2</b> Problem: automated detection of malaria</a></li>
+<li class="chapter" data-level="8.3" data-path="use-case-1.html"><a href="use-case-1.html#challenges"><i class="fa fa-check"></i><b>8.3</b> Challenges</a></li>
+<li class="chapter" data-level="8.4" data-path="use-case-1.html"><a href="use-case-1.html#getting-started"><i class="fa fa-check"></i><b>8.4</b> Getting started</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="use-case-1.html"><a href="use-case-1.html#load-data"><i class="fa fa-check"></i><b>8.4.1</b> Load data</a></li>
+<li class="chapter" data-level="8.4.2" data-path="use-case-1.html"><a href="use-case-1.html#model-comparison"><i class="fa fa-check"></i><b>8.4.2</b> Model comparison</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="use-case-1.html"><a href="use-case-1.html#solutions"><i class="fa fa-check"></i><b>8.5</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="linear-models.html"><a href="linear-models.html"><i class="fa fa-check"></i><b>9</b> Linear models and matrix algebra</a><ul>
+<li class="chapter" data-level="9.1" data-path="linear-models.html"><a href="linear-models.html#linear-models-1"><i class="fa fa-check"></i><b>9.1</b> Linear models</a></li>
+<li class="chapter" data-level="9.2" data-path="linear-models.html"><a href="linear-models.html#matrix-algebra"><i class="fa fa-check"></i><b>9.2</b> Matrix algebra</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>10</b> Linear regression and logistic regression</a><ul>
+<li class="chapter" data-level="10.1" data-path="logistic-regression.html"><a href="logistic-regression.html#regression"><i class="fa fa-check"></i><b>10.1</b> Regression</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="logistic-regression.html"><a href="logistic-regression.html#linear-regression"><i class="fa fa-check"></i><b>10.1.1</b> Linear regression</a></li>
+<li class="chapter" data-level="10.1.2" data-path="logistic-regression.html"><a href="logistic-regression.html#polynomial-regression"><i class="fa fa-check"></i><b>10.1.2</b> Polynomial regression</a></li>
+<li class="chapter" data-level="10.1.3" data-path="logistic-regression.html"><a href="logistic-regression.html#distributions-of-fits"><i class="fa fa-check"></i><b>10.1.3</b> Distributions of fits</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="logistic-regression.html"><a href="logistic-regression.html#classification"><i class="fa fa-check"></i><b>10.2</b> Classification</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression"><i class="fa fa-check"></i><b>10.2.1</b> Logistic regression</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="logistic-regression.html"><a href="logistic-regression.html#resources"><i class="fa fa-check"></i><b>10.3</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="ann.html"><a href="ann.html"><i class="fa fa-check"></i><b>11</b> Artificial neural networks</a><ul>
+<li class="chapter" data-level="11.1" data-path="ann.html"><a href="ann.html#neural-networks"><i class="fa fa-check"></i><b>11.1</b> Neural Networks</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="use-case-2.html"><a href="use-case-2.html"><i class="fa fa-check"></i><b>12</b> Use case 2</a></li>
+<li class="chapter" data-level="13" data-path="mlnn.html"><a href="mlnn.html"><i class="fa fa-check"></i><b>13</b> Deep Learning</a><ul>
+<li class="chapter" data-level="13.1" data-path="mlnn.html"><a href="mlnn.html#multilayer-neural-networks"><i class="fa fa-check"></i><b>13.1</b> Multilayer Neural Networks</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="mlnn.html"><a href="mlnn.html#reading-in-images"><i class="fa fa-check"></i><b>13.1.1</b> Reading in images</a></li>
+<li class="chapter" data-level="13.1.2" data-path="mlnn.html"><a href="mlnn.html#constructing-layers-in-kerasr"><i class="fa fa-check"></i><b>13.1.2</b> Constructing layers in kerasR</a></li>
+<li class="chapter" data-level="13.1.3" data-path="mlnn.html"><a href="mlnn.html#rick-and-morty-classifier-using-deep-learning"><i class="fa fa-check"></i><b>13.1.3</b> Rick and Morty classifier using Deep Learning</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="mlnn.html"><a href="mlnn.html#convolutional-neural-networks"><i class="fa fa-check"></i><b>13.2</b> Convolutional neural networks</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="mlnn.html"><a href="mlnn.html#checking-the-models"><i class="fa fa-check"></i><b>13.2.1</b> Checking the models</a></li>
+<li class="chapter" data-level="13.2.2" data-path="mlnn.html"><a href="mlnn.html#asking-more-precise-questions"><i class="fa fa-check"></i><b>13.2.2</b> Asking more precise questions</a></li>
+<li class="chapter" data-level="13.2.3" data-path="mlnn.html"><a href="mlnn.html#more-complex-networks"><i class="fa fa-check"></i><b>13.2.3</b> More complex networks</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="svm.html"><a href="svm.html#further-reading"><i class="fa fa-check"></i><b>13.3</b> Further reading</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="logistic-regression.html"><a href="logistic-regression.html#resources"><i class="fa fa-check"></i><b>A</b> Resources</a><ul>
+<li class="chapter" data-level="A.1" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>A.1</b> Python</a></li>
+<li class="chapter" data-level="A.2" data-path="resources.html"><a href="resources.html#machine-learning-data-set-repositories"><i class="fa fa-check"></i><b>A.2</b> Machine learning data set repositories</a><ul>
+<li class="chapter" data-level="A.2.1" data-path="resources.html"><a href="resources.html#mldata"><i class="fa fa-check"></i><b>A.2.1</b> MLDATA</a></li>
+<li class="chapter" data-level="A.2.2" data-path="resources.html"><a href="resources.html#uci-machine-learning-repository"><i class="fa fa-check"></i><b>A.2.2</b> UCI Machine Learning Repository</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="solutions-dimensionality-reduction.html"><a href="solutions-dimensionality-reduction.html"><i class="fa fa-check"></i><b>B</b> Solutions ch. 2 - Dimensionality reduction</a><ul>
+<li class="chapter" data-level="B.1" data-path="solutions-dimensionality-reduction.html"><a href="solutions-dimensionality-reduction.html#exercise-2.5."><i class="fa fa-check"></i><b>B.1</b> Exercise 2.5.</a></li>
+<li class="chapter" data-level="B.2" data-path="solutions-dimensionality-reduction.html"><a href="solutions-dimensionality-reduction.html#exercise-2.6."><i class="fa fa-check"></i><b>B.2</b> Exercise 2.6.</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="solutions-clustering.html"><a href="solutions-clustering.html"><i class="fa fa-check"></i><b>C</b> Solutions ch. 4 - Clustering</a><ul>
+<li class="chapter" data-level="C.1" data-path="svm.html"><a href="svm.html#exercise-1"><i class="fa fa-check"></i><b>C.1</b> Exercise 1</a></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="solutions-nearest-neighbours.html"><a href="solutions-nearest-neighbours.html"><i class="fa fa-check"></i><b>D</b> Solutions ch. 7 - Nearest neighbours</a><ul>
+<li class="chapter" data-level="D.1" data-path="svm.html"><a href="svm.html#exercise-1"><i class="fa fa-check"></i><b>D.1</b> Exercise 1</a></li>
+</ul></li>
+<li class="chapter" data-level="E" data-path="solutions-svm.html"><a href="solutions-svm.html"><i class="fa fa-check"></i><b>E</b> Solutions ch. 6 - Support vector machines</a><ul>
+<li class="chapter" data-level="E.1" data-path="svm.html"><a href="svm.html#exercise-1"><i class="fa fa-check"></i><b>E.1</b> Exercise 1</a></li>
+</ul></li>
+<li class="chapter" data-level="F" data-path="solutions-decision-trees.html"><a href="solutions-decision-trees.html"><i class="fa fa-check"></i><b>F</b> Solutions ch. 9 - Decision trees and random forests</a><ul>
+<li class="chapter" data-level="F.1" data-path="svm.html"><a href="svm.html#exercise-1"><i class="fa fa-check"></i><b>F.1</b> Exercise 1</a></li>
+</ul></li>
+<li class="chapter" data-level="G" data-path="use-case-1-solutions.html"><a href="use-case-1-solutions.html"><i class="fa fa-check"></i><b>G</b> Solutions chapter 8 - use case 1</a><ul>
+<li class="chapter" data-level="G.1" data-path="use-case-1-solutions.html"><a href="use-case-1-solutions.html#preparation"><i class="fa fa-check"></i><b>G.1</b> Preparation</a><ul>
+<li class="chapter" data-level="G.1.1" data-path="use-case-1-solutions.html"><a href="use-case-1-solutions.html#load-required-libraries"><i class="fa fa-check"></i><b>G.1.1</b> Load required libraries</a></li>
+<li class="chapter" data-level="G.1.2" data-path="use-case-1-solutions.html"><a href="use-case-1-solutions.html#define-svm-model"><i class="fa fa-check"></i><b>G.1.2</b> Define SVM model</a></li>
+<li class="chapter" data-level="G.1.3" data-path="use-case-1-solutions.html"><a href="use-case-1-solutions.html#setup-parallel-processing"><i class="fa fa-check"></i><b>G.1.3</b> Setup parallel processing</a></li>
+<li class="chapter" data-level="G.1.4" data-path="use-case-1.html"><a href="use-case-1.html#load-data"><i class="fa fa-check"></i><b>G.1.4</b> Load data</a></li>
+</ul></li>
+<li class="chapter" data-level="G.2" data-path="use-case-1-solutions.html"><a href="use-case-1-solutions.html#assess-data-quality"><i class="fa fa-check"></i><b>G.2</b> Assess data quality</a><ul>
+<li class="chapter" data-level="G.2.1" data-path="nearest-neighbours.html"><a href="nearest-neighbours.html#zero-and-near-zero-variance-predictors"><i class="fa fa-check"></i><b>G.2.1</b> Zero and near-zero variance predictors</a></li>
+<li class="chapter" data-level="G.2.2" data-path="use-case-1-solutions.html"><a href="use-case-1-solutions.html#are-all-predictors-on-the-same-scale"><i class="fa fa-check"></i><b>G.2.2</b> Are all predictors on the same scale?</a></li>
+<li class="chapter" data-level="G.2.3" data-path="use-case-1-solutions.html"><a href="use-case-1-solutions.html#redundancy-from-correlated-variables"><i class="fa fa-check"></i><b>G.2.3</b> Redundancy from correlated variables</a></li>
+<li class="chapter" data-level="G.2.4" data-path="nearest-neighbours.html"><a href="nearest-neighbours.html#skewness"><i class="fa fa-check"></i><b>G.2.4</b> Skewness</a></li>
+</ul></li>
+<li class="chapter" data-level="G.3" data-path="use-case-1-solutions.html"><a href="use-case-1-solutions.html#infection-status-two-class-problem"><i class="fa fa-check"></i><b>G.3</b> Infection status (two-class problem)</a><ul>
+<li class="chapter" data-level="G.3.1" data-path="use-case-1-solutions.html"><a href="use-case-1-solutions.html#model-training-and-parameter-tuning"><i class="fa fa-check"></i><b>G.3.1</b> Model training and parameter tuning</a></li>
+<li class="chapter" data-level="G.3.2" data-path="use-case-1-solutions.html"><a href="use-case-1-solutions.html#knn"><i class="fa fa-check"></i><b>G.3.2</b> KNN</a></li>
+<li class="chapter" data-level="G.3.3" data-path="svm.html"><a href="svm.html#svm"><i class="fa fa-check"></i><b>G.3.3</b> SVM</a></li>
+<li class="chapter" data-level="G.3.4" data-path="use-case-1-solutions.html"><a href="use-case-1-solutions.html#decision-tree"><i class="fa fa-check"></i><b>G.3.4</b> Decision tree</a></li>
+<li class="chapter" data-level="G.3.5" data-path="decision-trees.html"><a href="decision-trees.html#random-forest"><i class="fa fa-check"></i><b>G.3.5</b> Random forest</a></li>
+<li class="chapter" data-level="G.3.6" data-path="use-case-1-solutions.html"><a href="use-case-1-solutions.html#compare-models"><i class="fa fa-check"></i><b>G.3.6</b> Compare models</a></li>
+<li class="chapter" data-level="G.3.7" data-path="use-case-1-solutions.html"><a href="use-case-1-solutions.html#predict-test-set-using-our-best-model"><i class="fa fa-check"></i><b>G.3.7</b> Predict test set using our best model</a></li>
+<li class="chapter" data-level="G.3.8" data-path="use-case-1-solutions.html"><a href="use-case-1-solutions.html#roc-curve"><i class="fa fa-check"></i><b>G.3.8</b> ROC curve</a></li>
+</ul></li>
+<li class="chapter" data-level="G.4" data-path="use-case-1-solutions.html"><a href="use-case-1-solutions.html#discrimination-of-infective-stages-multi-class-problem"><i class="fa fa-check"></i><b>G.4</b> Discrimination of infective stages (multi-class problem)</a><ul>
+<li class="chapter" data-level="G.4.1" data-path="use-case-1-solutions.html"><a href="use-case-1-solutions.html#define-cross-validation-procedure"><i class="fa fa-check"></i><b>G.4.1</b> Define cross-validation procedure</a></li>
+<li class="chapter" data-level="G.4.2" data-path="use-case-1-solutions.html"><a href="use-case-1-solutions.html#knn-1"><i class="fa fa-check"></i><b>G.4.2</b> KNN</a></li>
+<li class="chapter" data-level="G.4.3" data-path="use-case-1-solutions.html"><a href="use-case-1-solutions.html#svm-1"><i class="fa fa-check"></i><b>G.4.3</b> SVM</a></li>
+<li class="chapter" data-level="G.4.4" data-path="use-case-1-solutions.html"><a href="use-case-1-solutions.html#decision-tree-1"><i class="fa fa-check"></i><b>G.4.4</b> Decision tree</a></li>
+<li class="chapter" data-level="G.4.5" data-path="use-case-1-solutions.html"><a href="use-case-1-solutions.html#random-forest-1"><i class="fa fa-check"></i><b>G.4.5</b> Random forest</a></li>
+<li class="chapter" data-level="G.4.6" data-path="use-case-1-solutions.html"><a href="use-case-1-solutions.html#compare-models-1"><i class="fa fa-check"></i><b>G.4.6</b> Compare models</a></li>
+<li class="chapter" data-level="G.4.7" data-path="use-case-1-solutions.html"><a href="use-case-1-solutions.html#predict-test-set-using-our-best-model-1"><i class="fa fa-check"></i><b>G.4.7</b> Predict test set using our best model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="H" data-path="solutions-linear-models.html"><a href="solutions-linear-models.html"><i class="fa fa-check"></i><b>H</b> Solutions ch. 3 - Linear models and matrix algebra</a><ul>
+<li class="chapter" data-level="H.1" data-path="solutions-linear-models.html"><a href="solutions-linear-models.html#example-2"><i class="fa fa-check"></i><b>H.1</b> Example 2</a></li>
+<li class="chapter" data-level="H.2" data-path="solutions-linear-models.html"><a href="solutions-linear-models.html#example-2-1"><i class="fa fa-check"></i><b>H.2</b> Example 2</a></li>
+</ul></li>
+<li class="chapter" data-level="I" data-path="solutions-logistic-regression.html"><a href="solutions-logistic-regression.html"><i class="fa fa-check"></i><b>I</b> Solutions ch. 4 - Linear and non-linear (logistic) regression</a></li>
+<li class="chapter" data-level="J" data-path="solutions-ann.html"><a href="solutions-ann.html"><i class="fa fa-check"></i><b>J</b> Solutions ch. 10 - Artificial neural networks</a><ul>
+<li class="chapter" data-level="J.1" data-path="svm.html"><a href="svm.html#exercise-1"><i class="fa fa-check"></i><b>J.1</b> Exercise 1</a></li>
+</ul></li>
+<li class="chapter" data-level="K" data-path="use-case-2-solutions.html"><a href="use-case-2-solutions.html"><i class="fa fa-check"></i><b>K</b> Solutions for use case 2</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">An Introduction to Machine Learning</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="use-case-1-solutions" class="section level1">
+<h1><span class="header-section-number">G</span> Solutions chapter 8 - use case 1</h1>
+<p>Solutions to exercises of chapter <a href="use-case-1.html#use-case-1">8</a>.</p>
+<div id="preparation" class="section level2">
+<h2><span class="header-section-number">G.1</span> Preparation</h2>
+<div id="load-required-libraries" class="section level3">
+<h3><span class="header-section-number">G.1.1</span> Load required libraries</h3>
+<div class="sourceCode" id="cb765"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb765-1" data-line-number="1"><span class="kw">library</span>(caret)</a></code></pre></div>
+<pre><code>## Loading required package: lattice</code></pre>
+<pre><code>## Loading required package: ggplot2</code></pre>
+<div class="sourceCode" id="cb768"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb768-1" data-line-number="1"><span class="kw">library</span>(doMC)</a></code></pre></div>
+<pre><code>## Loading required package: foreach</code></pre>
+<pre><code>## Loading required package: iterators</code></pre>
+<pre><code>## Loading required package: parallel</code></pre>
+<div class="sourceCode" id="cb772"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb772-1" data-line-number="1"><span class="kw">library</span>(corrplot)</a></code></pre></div>
+<pre><code>## corrplot 0.84 loaded</code></pre>
+<div class="sourceCode" id="cb774"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb774-1" data-line-number="1"><span class="kw">library</span>(rpart.plot)</a></code></pre></div>
+<pre><code>## Loading required package: rpart</code></pre>
+<div class="sourceCode" id="cb776"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb776-1" data-line-number="1"><span class="kw">library</span>(pROC)</a></code></pre></div>
+<pre><code>## Type &#39;citation(&quot;pROC&quot;)&#39; for a citation.</code></pre>
+<pre><code>## 
+## Attaching package: &#39;pROC&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     cov, smooth, var</code></pre>
+</div>
+<div id="define-svm-model" class="section level3">
+<h3><span class="header-section-number">G.1.2</span> Define SVM model</h3>
+<div class="sourceCode" id="cb780"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb780-1" data-line-number="1">svmRadialE1071 &lt;-<span class="st"> </span><span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb780-2" data-line-number="2">  <span class="dt">label =</span> <span class="st">&quot;Support Vector Machines with Radial Kernel - e1071&quot;</span>,</a>
+<a class="sourceLine" id="cb780-3" data-line-number="3">  <span class="dt">library =</span> <span class="st">&quot;e1071&quot;</span>,</a>
+<a class="sourceLine" id="cb780-4" data-line-number="4">  <span class="dt">type =</span> <span class="kw">c</span>(<span class="st">&quot;Regression&quot;</span>, <span class="st">&quot;Classification&quot;</span>),</a>
+<a class="sourceLine" id="cb780-5" data-line-number="5">  <span class="dt">parameters =</span> <span class="kw">data.frame</span>(<span class="dt">parameter=</span><span class="st">&quot;cost&quot;</span>,</a>
+<a class="sourceLine" id="cb780-6" data-line-number="6">                          <span class="dt">class=</span><span class="st">&quot;numeric&quot;</span>,</a>
+<a class="sourceLine" id="cb780-7" data-line-number="7">                          <span class="dt">label=</span><span class="st">&quot;Cost&quot;</span>),</a>
+<a class="sourceLine" id="cb780-8" data-line-number="8">  <span class="dt">grid =</span> <span class="cf">function</span> (x, y, <span class="dt">len =</span> <span class="ot">NULL</span>, <span class="dt">search =</span> <span class="st">&quot;grid&quot;</span>) </a>
+<a class="sourceLine" id="cb780-9" data-line-number="9">    {</a>
+<a class="sourceLine" id="cb780-10" data-line-number="10">      <span class="cf">if</span> (search <span class="op">==</span><span class="st"> &quot;grid&quot;</span>) {</a>
+<a class="sourceLine" id="cb780-11" data-line-number="11">        out &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(<span class="dt">cost =</span> <span class="dv">2</span><span class="op">^</span>((<span class="dv">1</span><span class="op">:</span>len) <span class="op">-</span><span class="st"> </span><span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb780-12" data-line-number="12">      }</a>
+<a class="sourceLine" id="cb780-13" data-line-number="13">      <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb780-14" data-line-number="14">        out &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">cost =</span> <span class="dv">2</span><span class="op">^</span><span class="kw">runif</span>(len, <span class="dt">min =</span> <span class="dv">-5</span>, <span class="dt">max =</span> <span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb780-15" data-line-number="15">      }</a>
+<a class="sourceLine" id="cb780-16" data-line-number="16">      out</a>
+<a class="sourceLine" id="cb780-17" data-line-number="17">    },</a>
+<a class="sourceLine" id="cb780-18" data-line-number="18">  <span class="dt">loop=</span><span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb780-19" data-line-number="19">  <span class="dt">fit=</span><span class="cf">function</span> (x, y, wts, param, lev, last, classProbs, ...) </a>
+<a class="sourceLine" id="cb780-20" data-line-number="20">    {</a>
+<a class="sourceLine" id="cb780-21" data-line-number="21">      <span class="cf">if</span> (<span class="kw">any</span>(<span class="kw">names</span>(<span class="kw">list</span>(...)) <span class="op">==</span><span class="st"> &quot;probability&quot;</span>) <span class="op">|</span><span class="st"> </span><span class="kw">is.numeric</span>(y)) {</a>
+<a class="sourceLine" id="cb780-22" data-line-number="22">        out &lt;-<span class="st"> </span>e1071<span class="op">::</span><span class="kw">svm</span>(<span class="dt">x =</span> <span class="kw">as.matrix</span>(x), <span class="dt">y =</span> y, <span class="dt">kernel =</span> <span class="st">&quot;radial&quot;</span>, </a>
+<a class="sourceLine" id="cb780-23" data-line-number="23">                          <span class="dt">cost =</span> param<span class="op">$</span>cost, ...)</a>
+<a class="sourceLine" id="cb780-24" data-line-number="24">      }</a>
+<a class="sourceLine" id="cb780-25" data-line-number="25">      <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb780-26" data-line-number="26">        out &lt;-<span class="st"> </span>e1071<span class="op">::</span><span class="kw">svm</span>(<span class="dt">x =</span> <span class="kw">as.matrix</span>(x), <span class="dt">y =</span> y, <span class="dt">kernel =</span> <span class="st">&quot;radial&quot;</span>, </a>
+<a class="sourceLine" id="cb780-27" data-line-number="27">                          <span class="dt">cost =</span> param<span class="op">$</span>cost, <span class="dt">probability =</span> classProbs, ...)</a>
+<a class="sourceLine" id="cb780-28" data-line-number="28">      }</a>
+<a class="sourceLine" id="cb780-29" data-line-number="29">      out</a>
+<a class="sourceLine" id="cb780-30" data-line-number="30">    },</a>
+<a class="sourceLine" id="cb780-31" data-line-number="31">  <span class="dt">predict =</span> <span class="cf">function</span> (modelFit, newdata, <span class="dt">submodels =</span> <span class="ot">NULL</span>) </a>
+<a class="sourceLine" id="cb780-32" data-line-number="32">    {</a>
+<a class="sourceLine" id="cb780-33" data-line-number="33">      <span class="kw">predict</span>(modelFit, newdata)</a>
+<a class="sourceLine" id="cb780-34" data-line-number="34">    },</a>
+<a class="sourceLine" id="cb780-35" data-line-number="35">  <span class="dt">prob =</span> <span class="cf">function</span> (modelFit, newdata, <span class="dt">submodels =</span> <span class="ot">NULL</span>) </a>
+<a class="sourceLine" id="cb780-36" data-line-number="36">    {</a>
+<a class="sourceLine" id="cb780-37" data-line-number="37">      out &lt;-<span class="st"> </span><span class="kw">predict</span>(modelFit, newdata, <span class="dt">probability =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb780-38" data-line-number="38">      <span class="kw">attr</span>(out, <span class="st">&quot;probabilities&quot;</span>)</a>
+<a class="sourceLine" id="cb780-39" data-line-number="39">    },</a>
+<a class="sourceLine" id="cb780-40" data-line-number="40">  <span class="dt">predictors =</span> <span class="cf">function</span> (x, ...) </a>
+<a class="sourceLine" id="cb780-41" data-line-number="41">    {</a>
+<a class="sourceLine" id="cb780-42" data-line-number="42">      out &lt;-<span class="st"> </span><span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(x<span class="op">$</span>terms)) </a>
+<a class="sourceLine" id="cb780-43" data-line-number="43">        <span class="kw">predictors.terms</span>(x<span class="op">$</span>terms)</a>
+<a class="sourceLine" id="cb780-44" data-line-number="44">      <span class="cf">else</span> x<span class="op">$</span>xNames</a>
+<a class="sourceLine" id="cb780-45" data-line-number="45">      <span class="cf">if</span> (<span class="kw">is.null</span>(out)) </a>
+<a class="sourceLine" id="cb780-46" data-line-number="46">        out &lt;-<span class="st"> </span><span class="kw">names</span>(<span class="kw">attr</span>(x, <span class="st">&quot;scaling&quot;</span>)<span class="op">$</span>x.scale<span class="op">$</span><span class="st">`</span><span class="dt">scaled:center</span><span class="st">`</span>)</a>
+<a class="sourceLine" id="cb780-47" data-line-number="47">      <span class="cf">if</span> (<span class="kw">is.null</span>(out)) </a>
+<a class="sourceLine" id="cb780-48" data-line-number="48">        out &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb780-49" data-line-number="49">      out</a>
+<a class="sourceLine" id="cb780-50" data-line-number="50">    },</a>
+<a class="sourceLine" id="cb780-51" data-line-number="51">  <span class="dt">tags =</span> <span class="kw">c</span>(<span class="st">&quot;Kernel Methods&quot;</span>, <span class="st">&quot;Support Vector Machines&quot;</span>, <span class="st">&quot;Regression&quot;</span>, <span class="st">&quot;Classifier&quot;</span>, <span class="st">&quot;Robust Methods&quot;</span>),</a>
+<a class="sourceLine" id="cb780-52" data-line-number="52">  <span class="dt">levels =</span> <span class="cf">function</span>(x) x<span class="op">$</span>levels,</a>
+<a class="sourceLine" id="cb780-53" data-line-number="53">  <span class="dt">sort =</span> <span class="cf">function</span>(x)</a>
+<a class="sourceLine" id="cb780-54" data-line-number="54">  {</a>
+<a class="sourceLine" id="cb780-55" data-line-number="55">    x[<span class="kw">order</span>(x<span class="op">$</span>cost), ]</a>
+<a class="sourceLine" id="cb780-56" data-line-number="56">  }</a>
+<a class="sourceLine" id="cb780-57" data-line-number="57">)</a></code></pre></div>
+</div>
+<div id="setup-parallel-processing" class="section level3">
+<h3><span class="header-section-number">G.1.3</span> Setup parallel processing</h3>
+<div class="sourceCode" id="cb781"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb781-1" data-line-number="1"><span class="kw">registerDoMC</span>(<span class="kw">detectCores</span>())</a>
+<a class="sourceLine" id="cb781-2" data-line-number="2"><span class="kw">getDoParWorkers</span>()</a></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+</div>
+<div id="load-data" class="section level3">
+<h3><span class="header-section-number">G.1.4</span> Load data</h3>
+<div class="sourceCode" id="cb783"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb783-1" data-line-number="1"><span class="kw">load</span>(<span class="st">&quot;data/malaria/malaria.RData&quot;</span>)</a></code></pre></div>
+<p>Inspect objects that have been loaded into R session</p>
+<div class="sourceCode" id="cb784"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb784-1" data-line-number="1"><span class="kw">ls</span>()</a></code></pre></div>
+<pre><code>## [1] &quot;infectionStatus&quot; &quot;morphology&quot;      &quot;stage&quot;           &quot;svmRadialE1071&quot;</code></pre>
+<div class="sourceCode" id="cb786"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb786-1" data-line-number="1"><span class="kw">class</span>(morphology)</a></code></pre></div>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<div class="sourceCode" id="cb788"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb788-1" data-line-number="1"><span class="kw">dim</span>(morphology)</a></code></pre></div>
+<pre><code>## [1] 1237   23</code></pre>
+<div class="sourceCode" id="cb790"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb790-1" data-line-number="1"><span class="kw">names</span>(morphology)</a></code></pre></div>
+<pre><code>##  [1] &quot;Area&quot;                        &quot;Major Axis Length&quot;          
+##  [3] &quot;Minor Axis length&quot;           &quot;Eccentricity&quot;               
+##  [5] &quot;Mean OPL&quot;                    &quot;Max OPL&quot;                    
+##  [7] &quot;Median OPL&quot;                  &quot;Std OPL&quot;                    
+##  [9] &quot;Skewness&quot;                    &quot;Kurtosis&quot;                   
+## [11] &quot;Variance OPL&quot;                &quot;IQR OPL&quot;                    
+## [13] &quot;Optical volume&quot;              &quot;Centroid vs. center of mass&quot;
+## [15] &quot;Elongation&quot;                  &quot;Upper quartile OPL&quot;         
+## [17] &quot;Perimeter&quot;                   &quot;Equivalent diameter&quot;        
+## [19] &quot;Max gradient&quot;                &quot;Mean gradient&quot;              
+## [21] &quot;Upper quartile gradient&quot;     &quot;Min symmetry&quot;               
+## [23] &quot;Mean symmetry&quot;</code></pre>
+<div class="sourceCode" id="cb792"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb792-1" data-line-number="1"><span class="kw">class</span>(infectionStatus)</a></code></pre></div>
+<pre><code>## [1] &quot;factor&quot;</code></pre>
+<div class="sourceCode" id="cb794"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb794-1" data-line-number="1"><span class="kw">summary</span>(<span class="kw">as.factor</span>(infectionStatus))</a></code></pre></div>
+<pre><code>##   infected uninfected 
+##        824        413</code></pre>
+<div class="sourceCode" id="cb796"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb796-1" data-line-number="1"><span class="kw">class</span>(stage)</a></code></pre></div>
+<pre><code>## [1] &quot;factor&quot;</code></pre>
+<div class="sourceCode" id="cb798"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb798-1" data-line-number="1"><span class="kw">summary</span>(<span class="kw">as.factor</span>(stage))</a></code></pre></div>
+<pre><code>## early trophozoite  late trophozoite          schizont        uninfected 
+##               173               314               337               413</code></pre>
+<p>###Data splitting
+Partition data into a training and test set using the <strong>createDataPartition</strong> function</p>
+<div class="sourceCode" id="cb800"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb800-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">42</span>)</a>
+<a class="sourceLine" id="cb800-2" data-line-number="2">trainIndex &lt;-<span class="st"> </span><span class="kw">createDataPartition</span>(<span class="dt">y=</span>stage, <span class="dt">times=</span><span class="dv">1</span>, <span class="dt">p=</span><span class="fl">0.7</span>, <span class="dt">list=</span>F)</a>
+<a class="sourceLine" id="cb800-3" data-line-number="3">infectionStatusTrain &lt;-<span class="st"> </span>infectionStatus[trainIndex]</a>
+<a class="sourceLine" id="cb800-4" data-line-number="4">stageTrain &lt;-<span class="st"> </span>stage[trainIndex]</a>
+<a class="sourceLine" id="cb800-5" data-line-number="5">morphologyTrain &lt;-<span class="st"> </span>morphology[trainIndex,]</a>
+<a class="sourceLine" id="cb800-6" data-line-number="6">infectionStatusTest &lt;-<span class="st"> </span>infectionStatus[<span class="op">-</span>trainIndex]</a>
+<a class="sourceLine" id="cb800-7" data-line-number="7">stageTest &lt;-<span class="st"> </span>stage[<span class="op">-</span>trainIndex]</a>
+<a class="sourceLine" id="cb800-8" data-line-number="8">morphologyTest &lt;-<span class="st"> </span>morphology[<span class="op">-</span>trainIndex,]</a></code></pre></div>
+</div>
+</div>
+<div id="assess-data-quality" class="section level2">
+<h2><span class="header-section-number">G.2</span> Assess data quality</h2>
+<div id="zero-and-near-zero-variance-predictors" class="section level3">
+<h3><span class="header-section-number">G.2.1</span> Zero and near-zero variance predictors</h3>
+<p>The function <strong>nearZeroVar</strong> identifies predictors that have one unique value. It also diagnoses predictors having both of the following characteristics:</p>
+<ul>
+<li>very few unique values relative to the number of samples</li>
+<li>the ratio of the frequency of the most common value to the frequency of the 2nd most common value is large.</li>
+</ul>
+<p>Such zero and near zero-variance predictors have a deleterious impact on modelling and may lead to unstable fits.</p>
+<div class="sourceCode" id="cb801"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb801-1" data-line-number="1"><span class="kw">nearZeroVar</span>(morphologyTrain, <span class="dt">saveMetrics =</span> T)</a></code></pre></div>
+<pre><code>##                             freqRatio percentUnique zeroVar   nzv
+## Area                                1      91.82028   FALSE FALSE
+## Major Axis Length                   1     100.00000   FALSE FALSE
+## Minor Axis length                   1     100.00000   FALSE FALSE
+## Eccentricity                        1     100.00000   FALSE FALSE
+## Mean OPL                            1     100.00000   FALSE FALSE
+## Max OPL                             1     100.00000   FALSE FALSE
+## Median OPL                          1     100.00000   FALSE FALSE
+## Std OPL                             1     100.00000   FALSE FALSE
+## Skewness                            1     100.00000   FALSE FALSE
+## Kurtosis                            1     100.00000   FALSE FALSE
+## Variance OPL                        1     100.00000   FALSE FALSE
+## IQR OPL                             1     100.00000   FALSE FALSE
+## Optical volume                      1     100.00000   FALSE FALSE
+## Centroid vs. center of mass         1     100.00000   FALSE FALSE
+## Elongation                          1     100.00000   FALSE FALSE
+## Upper quartile OPL                  1     100.00000   FALSE FALSE
+## Perimeter                           1      69.23963   FALSE FALSE
+## Equivalent diameter                 1      91.82028   FALSE FALSE
+## Max gradient                        1     100.00000   FALSE FALSE
+## Mean gradient                       1     100.00000   FALSE FALSE
+## Upper quartile gradient             1     100.00000   FALSE FALSE
+## Min symmetry                        1     100.00000   FALSE FALSE
+## Mean symmetry                       1     100.00000   FALSE FALSE</code></pre>
+<p>There are no zero variance or near zero variance predictors in our data set.</p>
+</div>
+<div id="are-all-predictors-on-the-same-scale" class="section level3">
+<h3><span class="header-section-number">G.2.2</span> Are all predictors on the same scale?</h3>
+<div class="sourceCode" id="cb803"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb803-1" data-line-number="1"><span class="kw">featurePlot</span>(<span class="dt">x =</span> morphologyTrain,</a>
+<a class="sourceLine" id="cb803-2" data-line-number="2">            <span class="dt">y =</span> stageTrain,</a>
+<a class="sourceLine" id="cb803-3" data-line-number="3">            <span class="dt">plot =</span> <span class="st">&quot;box&quot;</span>,</a>
+<a class="sourceLine" id="cb803-4" data-line-number="4">            <span class="co">## Pass in options to bwplot()</span></a>
+<a class="sourceLine" id="cb803-5" data-line-number="5">            <span class="dt">scales =</span> <span class="kw">list</span>(<span class="dt">y =</span> <span class="kw">list</span>(<span class="dt">relation=</span><span class="st">&quot;free&quot;</span>),</a>
+<a class="sourceLine" id="cb803-6" data-line-number="6">                          <span class="dt">x =</span> <span class="kw">list</span>(<span class="dt">rot =</span> <span class="dv">90</span>)),</a>
+<a class="sourceLine" id="cb803-7" data-line-number="7">            <span class="dt">layout =</span> <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">5</span>))</a></code></pre></div>
+<p><img src="20-solutions-use-case-1_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;" />
+The variables in this data set are on different scales. In this situation it is important to centre and scale each predictor. A predictor variable is centered by subtracting the mean of the predictor from each value. To scale a predictor variable, each value is divided by its standard deviation. After centring and scaling the predictor variable has a mean of 0 and a standard deviation of 1.</p>
+</div>
+<div id="redundancy-from-correlated-variables" class="section level3">
+<h3><span class="header-section-number">G.2.3</span> Redundancy from correlated variables</h3>
+<p>Examine pairwise correlations of predictors to identify redundancy in data set</p>
+<div class="sourceCode" id="cb804"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb804-1" data-line-number="1">corMat &lt;-<span class="st"> </span><span class="kw">cor</span>(morphologyTrain)</a>
+<a class="sourceLine" id="cb804-2" data-line-number="2"><span class="kw">corrplot</span>(corMat, <span class="dt">order=</span><span class="st">&quot;hclust&quot;</span>, <span class="dt">tl.cex=</span><span class="dv">1</span>)</a></code></pre></div>
+<p><img src="20-solutions-use-case-1_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Find highly correlated predictors</p>
+<div class="sourceCode" id="cb805"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb805-1" data-line-number="1">highCorr &lt;-<span class="st"> </span><span class="kw">findCorrelation</span>(corMat, <span class="dt">cutoff=</span><span class="fl">0.75</span>)</a>
+<a class="sourceLine" id="cb805-2" data-line-number="2"><span class="kw">length</span>(highCorr)</a></code></pre></div>
+<pre><code>## [1] 15</code></pre>
+<div class="sourceCode" id="cb807"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb807-1" data-line-number="1"><span class="kw">names</span>(morphologyTrain)[highCorr]</a></code></pre></div>
+<pre><code>##  [1] &quot;Max OPL&quot;                 &quot;Std OPL&quot;                
+##  [3] &quot;Area&quot;                    &quot;Minor Axis length&quot;      
+##  [5] &quot;Mean gradient&quot;           &quot;Equivalent diameter&quot;    
+##  [7] &quot;Variance OPL&quot;            &quot;Skewness&quot;               
+##  [9] &quot;IQR OPL&quot;                 &quot;Upper quartile gradient&quot;
+## [11] &quot;Median OPL&quot;              &quot;Mean symmetry&quot;          
+## [13] &quot;Min symmetry&quot;            &quot;Major Axis Length&quot;      
+## [15] &quot;Elongation&quot;</code></pre>
+</div>
+<div id="skewness" class="section level3">
+<h3><span class="header-section-number">G.2.4</span> Skewness</h3>
+<p>Observations grouped by infection status:</p>
+<div class="sourceCode" id="cb809"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb809-1" data-line-number="1"><span class="kw">featurePlot</span>(<span class="dt">x =</span> morphologyTrain,</a>
+<a class="sourceLine" id="cb809-2" data-line-number="2">            <span class="dt">y =</span> infectionStatusTrain,</a>
+<a class="sourceLine" id="cb809-3" data-line-number="3">            <span class="dt">plot =</span> <span class="st">&quot;density&quot;</span>,</a>
+<a class="sourceLine" id="cb809-4" data-line-number="4">            <span class="co">## Pass in options to xyplot() to</span></a>
+<a class="sourceLine" id="cb809-5" data-line-number="5">            <span class="co">## make it prettier</span></a>
+<a class="sourceLine" id="cb809-6" data-line-number="6">            <span class="dt">scales =</span> <span class="kw">list</span>(<span class="dt">x =</span> <span class="kw">list</span>(<span class="dt">relation=</span><span class="st">&quot;free&quot;</span>),</a>
+<a class="sourceLine" id="cb809-7" data-line-number="7">                          <span class="dt">y =</span> <span class="kw">list</span>(<span class="dt">relation=</span><span class="st">&quot;free&quot;</span>)),</a>
+<a class="sourceLine" id="cb809-8" data-line-number="8">            <span class="dt">adjust =</span> <span class="fl">1.5</span>,</a>
+<a class="sourceLine" id="cb809-9" data-line-number="9">            <span class="dt">pch =</span> <span class="st">&quot;|&quot;</span>,</a>
+<a class="sourceLine" id="cb809-10" data-line-number="10">            <span class="dt">layout =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">5</span>),</a>
+<a class="sourceLine" id="cb809-11" data-line-number="11">            <span class="dt">auto.key =</span> <span class="kw">list</span>(<span class="dt">columns =</span> <span class="dv">2</span>))</a></code></pre></div>
+<p><img src="20-solutions-use-case-1_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Observations grouped by infection stage:</p>
+<div class="sourceCode" id="cb810"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb810-1" data-line-number="1"><span class="kw">featurePlot</span>(<span class="dt">x =</span> morphologyTrain,</a>
+<a class="sourceLine" id="cb810-2" data-line-number="2">            <span class="dt">y =</span> stageTrain,</a>
+<a class="sourceLine" id="cb810-3" data-line-number="3">            <span class="dt">plot =</span> <span class="st">&quot;density&quot;</span>,</a>
+<a class="sourceLine" id="cb810-4" data-line-number="4">            <span class="co">## Pass in options to xyplot() to</span></a>
+<a class="sourceLine" id="cb810-5" data-line-number="5">            <span class="co">## make it prettier</span></a>
+<a class="sourceLine" id="cb810-6" data-line-number="6">            <span class="dt">scales =</span> <span class="kw">list</span>(<span class="dt">x =</span> <span class="kw">list</span>(<span class="dt">relation=</span><span class="st">&quot;free&quot;</span>),</a>
+<a class="sourceLine" id="cb810-7" data-line-number="7">                          <span class="dt">y =</span> <span class="kw">list</span>(<span class="dt">relation=</span><span class="st">&quot;free&quot;</span>)),</a>
+<a class="sourceLine" id="cb810-8" data-line-number="8">            <span class="dt">adjust =</span> <span class="fl">1.5</span>,</a>
+<a class="sourceLine" id="cb810-9" data-line-number="9">            <span class="dt">pch =</span> <span class="st">&quot;|&quot;</span>,</a>
+<a class="sourceLine" id="cb810-10" data-line-number="10">            <span class="dt">layout =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">5</span>),</a>
+<a class="sourceLine" id="cb810-11" data-line-number="11">            <span class="dt">auto.key =</span> <span class="kw">list</span>(<span class="dt">columns =</span> <span class="dv">2</span>))</a></code></pre></div>
+<p><img src="20-solutions-use-case-1_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+</div>
+</div>
+<div id="infection-status-two-class-problem" class="section level2">
+<h2><span class="header-section-number">G.3</span> Infection status (two-class problem)</h2>
+<div id="model-training-and-parameter-tuning" class="section level3">
+<h3><span class="header-section-number">G.3.1</span> Model training and parameter tuning</h3>
+<p>All of the models we are going to use have a single tuning parameter. For each model we will use repeated cross validation to try 10 different values of the tuning parameter.</p>
+<p>For each model let’s do five-fold cross-validation a total of five times. To make the analysis reproducible we need to specify the seed for each resampling iteration.</p>
+<div class="sourceCode" id="cb811"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb811-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">42</span>)</a>
+<a class="sourceLine" id="cb811-2" data-line-number="2">seeds &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="dt">mode =</span> <span class="st">&quot;list&quot;</span>, <span class="dt">length =</span> <span class="dv">26</span>)</a>
+<a class="sourceLine" id="cb811-3" data-line-number="3"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">25</span>) seeds[[i]] &lt;-<span class="st"> </span><span class="kw">sample.int</span>(<span class="dv">1000</span>, <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb811-4" data-line-number="4">seeds[[<span class="dv">26</span>]] &lt;-<span class="st"> </span><span class="kw">sample.int</span>(<span class="dv">1000</span>,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb811-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb811-6" data-line-number="6">train_ctrl_infect_status &lt;-<span class="st"> </span><span class="kw">trainControl</span>(<span class="dt">method=</span><span class="st">&quot;repeatedcv&quot;</span>,</a>
+<a class="sourceLine" id="cb811-7" data-line-number="7">                           <span class="dt">number =</span> <span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb811-8" data-line-number="8">                           <span class="dt">repeats =</span> <span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb811-9" data-line-number="9">                           <span class="dt">seeds =</span> seeds,</a>
+<a class="sourceLine" id="cb811-10" data-line-number="10">                           <span class="dt">summaryFunction =</span> twoClassSummary,</a>
+<a class="sourceLine" id="cb811-11" data-line-number="11">                           <span class="dt">classProbs =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+</div>
+<div id="knn" class="section level3">
+<h3><span class="header-section-number">G.3.2</span> KNN</h3>
+<p>Train knn model:</p>
+<div class="sourceCode" id="cb812"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb812-1" data-line-number="1">knnFit &lt;-<span class="st"> </span><span class="kw">train</span>(morphologyTrain, infectionStatusTrain,</a>
+<a class="sourceLine" id="cb812-2" data-line-number="2">                <span class="dt">method=</span><span class="st">&quot;knn&quot;</span>,</a>
+<a class="sourceLine" id="cb812-3" data-line-number="3">                <span class="dt">preProcess =</span> <span class="kw">c</span>(<span class="st">&quot;center&quot;</span>, <span class="st">&quot;scale&quot;</span>),</a>
+<a class="sourceLine" id="cb812-4" data-line-number="4">                <span class="co">#tuneGrid=tuneParam,</span></a>
+<a class="sourceLine" id="cb812-5" data-line-number="5">                <span class="dt">tuneLength=</span><span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb812-6" data-line-number="6">                <span class="dt">trControl=</span>train_ctrl_infect_status)</a></code></pre></div>
+<pre><code>## Warning in train.default(morphologyTrain, infectionStatusTrain, method =
+## &quot;knn&quot;, : The metric &quot;Accuracy&quot; was not in the result set. ROC will be used
+## instead.</code></pre>
+<div class="sourceCode" id="cb814"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb814-1" data-line-number="1">knnFit</a></code></pre></div>
+<pre><code>## k-Nearest Neighbors 
+## 
+## 868 samples
+##  23 predictor
+##   2 classes: &#39;infected&#39;, &#39;uninfected&#39; 
+## 
+## Pre-processing: centered (23), scaled (23) 
+## Resampling: Cross-Validated (5 fold, repeated 5 times) 
+## Summary of sample sizes: 695, 694, 695, 694, 694, 695, ... 
+## Resampling results across tuning parameters:
+## 
+##   k   ROC        Sens       Spec     
+##    5  0.9962939  0.9716012  0.9979310
+##    7  0.9963053  0.9688396  0.9986207
+##    9  0.9959917  0.9653793  0.9965517
+##   11  0.9958366  0.9646897  0.9951724
+##   13  0.9958165  0.9646957  0.9965517
+##   15  0.9961136  0.9640030  0.9958621
+##   17  0.9963648  0.9640060  0.9944828
+##   19  0.9961856  0.9619280  0.9958621
+##   21  0.9960810  0.9615832  0.9944828
+##   23  0.9959707  0.9608966  0.9951724
+## 
+## ROC was used to select the optimal model using the largest value.
+## The final value used for the model was k = 17.</code></pre>
+<div class="sourceCode" id="cb816"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb816-1" data-line-number="1"><span class="kw">plot</span>(knnFit)</a></code></pre></div>
+<p><img src="20-solutions-use-case-1_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+</div>
+<div id="svm" class="section level3">
+<h3><span class="header-section-number">G.3.3</span> SVM</h3>
+<p>Train svm model:</p>
+<div class="sourceCode" id="cb817"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb817-1" data-line-number="1">svmFit &lt;-<span class="st"> </span><span class="kw">train</span>(morphologyTrain, infectionStatusTrain,</a>
+<a class="sourceLine" id="cb817-2" data-line-number="2">                <span class="dt">method=</span>svmRadialE1071,</a>
+<a class="sourceLine" id="cb817-3" data-line-number="3">                <span class="dt">preProcess =</span> <span class="kw">c</span>(<span class="st">&quot;center&quot;</span>, <span class="st">&quot;scale&quot;</span>),</a>
+<a class="sourceLine" id="cb817-4" data-line-number="4">                <span class="co">#tuneGrid=tuneParam,</span></a>
+<a class="sourceLine" id="cb817-5" data-line-number="5">                <span class="dt">tuneLength=</span><span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb817-6" data-line-number="6">                <span class="dt">trControl=</span>train_ctrl_infect_status)</a></code></pre></div>
+<pre><code>## Warning in train.default(morphologyTrain, infectionStatusTrain, method =
+## svmRadialE1071, : The metric &quot;Accuracy&quot; was not in the result set. ROC will be
+## used instead.</code></pre>
+<div class="sourceCode" id="cb819"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb819-1" data-line-number="1">svmFit</a></code></pre></div>
+<pre><code>## Support Vector Machines with Radial Kernel - e1071 
+## 
+## 868 samples
+##  23 predictor
+##   2 classes: &#39;infected&#39;, &#39;uninfected&#39; 
+## 
+## Pre-processing: centered (23), scaled (23) 
+## Resampling: Cross-Validated (5 fold, repeated 5 times) 
+## Summary of sample sizes: 694, 694, 695, 694, 695, 695, ... 
+## Resampling results across tuning parameters:
+## 
+##   cost    ROC        Sens       Spec     
+##     0.25  0.9973153  0.9733673  0.9917241
+##     0.50  0.9975655  0.9737121  0.9972414
+##     1.00  0.9977089  0.9754393  0.9993103
+##     2.00  0.9979474  0.9785607  0.9993103
+##     4.00  0.9978997  0.9813253  0.9972414
+##     8.00  0.9978157  0.9833943  0.9972414
+##    16.00  0.9975119  0.9858111  0.9965517
+##    32.00  0.9975000  0.9875412  0.9958621
+##    64.00  0.9973454  0.9892714  0.9944828
+##   128.00  0.9964930  0.9892684  0.9910345
+## 
+## ROC was used to select the optimal model using the largest value.
+## The final value used for the model was cost = 2.</code></pre>
+<div class="sourceCode" id="cb821"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb821-1" data-line-number="1"><span class="kw">plot</span>(svmFit, <span class="dt">scales =</span> <span class="kw">list</span>(<span class="dt">x =</span> <span class="kw">list</span>(<span class="dt">log =</span><span class="dv">2</span>)))</a></code></pre></div>
+<p><img src="20-solutions-use-case-1_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+</div>
+<div id="decision-tree" class="section level3">
+<h3><span class="header-section-number">G.3.4</span> Decision tree</h3>
+<p>Train decision tree model:</p>
+<div class="sourceCode" id="cb822"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb822-1" data-line-number="1">dtFit &lt;-<span class="st"> </span><span class="kw">train</span>(morphologyTrain, infectionStatusTrain,</a>
+<a class="sourceLine" id="cb822-2" data-line-number="2">                <span class="dt">method=</span><span class="st">&quot;rpart&quot;</span>,</a>
+<a class="sourceLine" id="cb822-3" data-line-number="3">                <span class="dt">preProcess =</span> <span class="kw">c</span>(<span class="st">&quot;center&quot;</span>, <span class="st">&quot;scale&quot;</span>),</a>
+<a class="sourceLine" id="cb822-4" data-line-number="4">                <span class="co">#tuneGrid=tuneParam,</span></a>
+<a class="sourceLine" id="cb822-5" data-line-number="5">                <span class="dt">tuneLength=</span><span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb822-6" data-line-number="6">                <span class="dt">trControl=</span>train_ctrl_infect_status)</a></code></pre></div>
+<pre><code>## Warning in train.default(morphologyTrain, infectionStatusTrain, method =
+## &quot;rpart&quot;, : The metric &quot;Accuracy&quot; was not in the result set. ROC will be used
+## instead.</code></pre>
+<div class="sourceCode" id="cb824"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb824-1" data-line-number="1">dtFit</a></code></pre></div>
+<pre><code>## CART 
+## 
+## 868 samples
+##  23 predictor
+##   2 classes: &#39;infected&#39;, &#39;uninfected&#39; 
+## 
+## Pre-processing: centered (23), scaled (23) 
+## Resampling: Cross-Validated (5 fold, repeated 5 times) 
+## Summary of sample sizes: 694, 694, 694, 695, 695, 694, ... 
+## Resampling results across tuning parameters:
+## 
+##   cp         ROC        Sens       Spec     
+##   0.0000000  0.9824943  0.9771634  0.9779310
+##   0.1003831  0.9652759  0.9574483  0.9731034
+##   0.2007663  0.9652759  0.9574483  0.9731034
+##   0.3011494  0.9652759  0.9574483  0.9731034
+##   0.4015326  0.9652759  0.9574483  0.9731034
+##   0.5019157  0.9652759  0.9574483  0.9731034
+##   0.6022989  0.9652759  0.9574483  0.9731034
+##   0.7026820  0.9652759  0.9574483  0.9731034
+##   0.8030651  0.9652759  0.9574483  0.9731034
+##   0.9034483  0.7758156  0.9723208  0.5793103
+## 
+## ROC was used to select the optimal model using the largest value.
+## The final value used for the model was cp = 0.</code></pre>
+<div class="sourceCode" id="cb826"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb826-1" data-line-number="1"><span class="kw">plot</span>(dtFit)</a></code></pre></div>
+<p><img src="20-solutions-use-case-1_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<div class="sourceCode" id="cb827"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb827-1" data-line-number="1"><span class="kw">prp</span>(dtFit<span class="op">$</span>finalModel)</a></code></pre></div>
+<p><img src="20-solutions-use-case-1_files/figure-html/unnamed-chunk-16-2.png" width="672" /></p>
+</div>
+<div id="random-forest" class="section level3">
+<h3><span class="header-section-number">G.3.5</span> Random forest</h3>
+<div class="sourceCode" id="cb828"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb828-1" data-line-number="1">rfFit &lt;-<span class="st"> </span><span class="kw">train</span>(morphologyTrain, infectionStatusTrain,</a>
+<a class="sourceLine" id="cb828-2" data-line-number="2">                <span class="dt">method=</span><span class="st">&quot;rf&quot;</span>,</a>
+<a class="sourceLine" id="cb828-3" data-line-number="3">                <span class="dt">preProcess =</span> <span class="kw">c</span>(<span class="st">&quot;center&quot;</span>, <span class="st">&quot;scale&quot;</span>),</a>
+<a class="sourceLine" id="cb828-4" data-line-number="4">                <span class="co">#tuneGrid=tuneParam,</span></a>
+<a class="sourceLine" id="cb828-5" data-line-number="5">                <span class="dt">tuneLength=</span><span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb828-6" data-line-number="6">                <span class="dt">trControl=</span>train_ctrl_infect_status)</a></code></pre></div>
+<pre><code>## Warning in train.default(morphologyTrain, infectionStatusTrain, method = &quot;rf&quot;, :
+## The metric &quot;Accuracy&quot; was not in the result set. ROC will be used instead.</code></pre>
+<div class="sourceCode" id="cb830"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb830-1" data-line-number="1">rfFit</a></code></pre></div>
+<pre><code>## Random Forest 
+## 
+## 868 samples
+##  23 predictor
+##   2 classes: &#39;infected&#39;, &#39;uninfected&#39; 
+## 
+## Pre-processing: centered (23), scaled (23) 
+## Resampling: Cross-Validated (5 fold, repeated 5 times) 
+## Summary of sample sizes: 694, 694, 695, 694, 695, 695, ... 
+## Resampling results across tuning parameters:
+## 
+##   mtry  ROC        Sens       Spec     
+##    2    0.9979473  0.9871994  0.9834483
+##    4    0.9976783  0.9871994  0.9827586
+##    6    0.9973155  0.9865067  0.9882759
+##    9    0.9973173  0.9858141  0.9868966
+##   11    0.9967869  0.9851154  0.9862069
+##   13    0.9968942  0.9840780  0.9848276
+##   16    0.9965961  0.9840750  0.9820690
+##   18    0.9964142  0.9830435  0.9793103
+##   20    0.9960719  0.9820030  0.9806897
+##   23    0.9940873  0.9813133  0.9806897
+## 
+## ROC was used to select the optimal model using the largest value.
+## The final value used for the model was mtry = 2.</code></pre>
+<div class="sourceCode" id="cb832"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb832-1" data-line-number="1"><span class="kw">plot</span>(rfFit)</a></code></pre></div>
+<p><img src="20-solutions-use-case-1_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+</div>
+<div id="compare-models" class="section level3">
+<h3><span class="header-section-number">G.3.6</span> Compare models</h3>
+<p>Make a list of our models</p>
+<div class="sourceCode" id="cb833"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb833-1" data-line-number="1">model_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">knn=</span>knnFit,</a>
+<a class="sourceLine" id="cb833-2" data-line-number="2">                   <span class="dt">svm=</span>svmFit,</a>
+<a class="sourceLine" id="cb833-3" data-line-number="3">                   <span class="dt">decisionTree=</span>dtFit,</a>
+<a class="sourceLine" id="cb833-4" data-line-number="4">                   <span class="dt">randomForest=</span>rfFit)</a></code></pre></div>
+<p>Collect resampling results for each model</p>
+<div class="sourceCode" id="cb834"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb834-1" data-line-number="1">resamps &lt;-<span class="st"> </span><span class="kw">resamples</span>(model_list)</a>
+<a class="sourceLine" id="cb834-2" data-line-number="2">resamps</a></code></pre></div>
+<pre><code>## 
+## Call:
+## resamples.default(x = model_list)
+## 
+## Models: knn, svm, decisionTree, randomForest 
+## Number of resamples: 25 
+## Performance metrics: ROC, Sens, Spec 
+## Time estimates for: everything, final model fit</code></pre>
+<div class="sourceCode" id="cb836"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb836-1" data-line-number="1"><span class="kw">summary</span>(resamps)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## summary.resamples(object = resamps)
+## 
+## Models: knn, svm, decisionTree, randomForest 
+## Number of resamples: 25 
+## 
+## ROC 
+##                   Min.   1st Qu.    Median      Mean   3rd Qu.      Max. NA&#39;s
+## knn          0.9865817 0.9940547 0.9979760 0.9963648 0.9991082 0.9999257    0
+## svm          0.9937031 0.9965815 0.9994055 0.9979474 0.9997027 1.0000000    0
+## decisionTree 0.9656659 0.9743609 0.9818668 0.9824943 0.9906297 0.9999257    0
+## randomForest 0.9940780 0.9966558 0.9991082 0.9979473 0.9997001 1.0000000    0
+## 
+## Sens 
+##                   Min.   1st Qu.    Median      Mean   3rd Qu.      Max. NA&#39;s
+## knn          0.9304348 0.9568966 0.9655172 0.9640060 0.9741379 0.9913043    0
+## svm          0.9396552 0.9739130 0.9827586 0.9785607 0.9913043 1.0000000    0
+## decisionTree 0.9391304 0.9655172 0.9741379 0.9771634 0.9827586 1.0000000    0
+## randomForest 0.9565217 0.9827586 0.9913043 0.9871994 0.9913793 1.0000000    0
+## 
+## Spec 
+##                   Min.   1st Qu.    Median      Mean 3rd Qu. Max. NA&#39;s
+## knn          0.9655172 0.9827586 1.0000000 0.9944828       1    1    0
+## svm          0.9827586 1.0000000 1.0000000 0.9993103       1    1    0
+## decisionTree 0.9482759 0.9655172 0.9827586 0.9779310       1    1    0
+## randomForest 0.9310345 0.9655172 0.9827586 0.9834483       1    1    0</code></pre>
+<div class="sourceCode" id="cb838"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb838-1" data-line-number="1"><span class="kw">bwplot</span>(resamps)</a></code></pre></div>
+<p><img src="20-solutions-use-case-1_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+</div>
+<div id="predict-test-set-using-our-best-model" class="section level3">
+<h3><span class="header-section-number">G.3.7</span> Predict test set using our best model</h3>
+<div class="sourceCode" id="cb839"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb839-1" data-line-number="1">test_pred &lt;-<span class="st"> </span><span class="kw">predict</span>(svmFit, morphologyTest)</a>
+<a class="sourceLine" id="cb839-2" data-line-number="2"><span class="kw">confusionMatrix</span>(test_pred, infectionStatusTest)</a></code></pre></div>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##             Reference
+## Prediction   infected uninfected
+##   infected        246          2
+##   uninfected        0        121
+##                                           
+##                Accuracy : 0.9946          
+##                  95% CI : (0.9806, 0.9993)
+##     No Information Rate : 0.6667          
+##     P-Value [Acc &gt; NIR] : &lt;2e-16          
+##                                           
+##                   Kappa : 0.9878          
+##                                           
+##  Mcnemar&#39;s Test P-Value : 0.4795          
+##                                           
+##             Sensitivity : 1.0000          
+##             Specificity : 0.9837          
+##          Pos Pred Value : 0.9919          
+##          Neg Pred Value : 1.0000          
+##              Prevalence : 0.6667          
+##          Detection Rate : 0.6667          
+##    Detection Prevalence : 0.6721          
+##       Balanced Accuracy : 0.9919          
+##                                           
+##        &#39;Positive&#39; Class : infected        
+## </code></pre>
+</div>
+<div id="roc-curve" class="section level3">
+<h3><span class="header-section-number">G.3.8</span> ROC curve</h3>
+<div class="sourceCode" id="cb841"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb841-1" data-line-number="1">svmProbs &lt;-<span class="st"> </span><span class="kw">predict</span>(svmFit, morphologyTest, <span class="dt">type=</span><span class="st">&quot;prob&quot;</span>)</a>
+<a class="sourceLine" id="cb841-2" data-line-number="2"><span class="kw">head</span>(svmProbs)</a></code></pre></div>
+<pre><code>##               infected uninfected
+## normal_..7 0.585266476  0.4147335
+## normal_.15 0.009865544  0.9901345
+## normal_.23 0.004011000  0.9959890
+## normal_.26 0.003558421  0.9964416
+## normal_.29 0.049331293  0.9506687
+## normal_.31 0.003040713  0.9969593</code></pre>
+<div class="sourceCode" id="cb843"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb843-1" data-line-number="1">svmROC &lt;-<span class="st"> </span><span class="kw">roc</span>(infectionStatusTest, svmProbs[,<span class="st">&quot;infected&quot;</span>])</a></code></pre></div>
+<pre><code>## Setting levels: control = infected, case = uninfected</code></pre>
+<pre><code>## Setting direction: controls &gt; cases</code></pre>
+<div class="sourceCode" id="cb846"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb846-1" data-line-number="1"><span class="kw">auc</span>(svmROC)</a></code></pre></div>
+<pre><code>## Area under the curve: 0.9998</code></pre>
+<div class="sourceCode" id="cb848"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb848-1" data-line-number="1"><span class="kw">plot</span>(svmROC)</a></code></pre></div>
+<p><img src="20-solutions-use-case-1_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+</div>
+</div>
+<div id="discrimination-of-infective-stages-multi-class-problem" class="section level2">
+<h2><span class="header-section-number">G.4</span> Discrimination of infective stages (multi-class problem)</h2>
+<div id="define-cross-validation-procedure" class="section level3">
+<h3><span class="header-section-number">G.4.1</span> Define cross-validation procedure</h3>
+<div class="sourceCode" id="cb849"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb849-1" data-line-number="1">train_ctrl_stage &lt;-<span class="st"> </span><span class="kw">trainControl</span>(<span class="dt">method=</span><span class="st">&quot;repeatedcv&quot;</span>,</a>
+<a class="sourceLine" id="cb849-2" data-line-number="2">                           <span class="dt">number =</span> <span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb849-3" data-line-number="3">                           <span class="dt">repeats =</span> <span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb849-4" data-line-number="4">                           <span class="dt">seeds =</span> seeds)</a></code></pre></div>
+</div>
+<div id="knn-1" class="section level3">
+<h3><span class="header-section-number">G.4.2</span> KNN</h3>
+<p>Train knn model with all variables:</p>
+<div class="sourceCode" id="cb850"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb850-1" data-line-number="1">knnFit &lt;-<span class="st"> </span><span class="kw">train</span>(morphologyTrain, stageTrain,</a>
+<a class="sourceLine" id="cb850-2" data-line-number="2">                <span class="dt">method=</span><span class="st">&quot;knn&quot;</span>,</a>
+<a class="sourceLine" id="cb850-3" data-line-number="3">                <span class="dt">preProcess =</span> <span class="kw">c</span>(<span class="st">&quot;center&quot;</span>, <span class="st">&quot;scale&quot;</span>),</a>
+<a class="sourceLine" id="cb850-4" data-line-number="4">                <span class="co">#tuneGrid=tuneParam,</span></a>
+<a class="sourceLine" id="cb850-5" data-line-number="5">                <span class="dt">tuneLength=</span><span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb850-6" data-line-number="6">                <span class="dt">trControl=</span>train_ctrl_stage)</a>
+<a class="sourceLine" id="cb850-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb850-8" data-line-number="8">knnFit</a></code></pre></div>
+<pre><code>## k-Nearest Neighbors 
+## 
+## 868 samples
+##  23 predictor
+##   4 classes: &#39;early trophozoite&#39;, &#39;late trophozoite&#39;, &#39;schizont&#39;, &#39;uninfected&#39; 
+## 
+## Pre-processing: centered (23), scaled (23) 
+## Resampling: Cross-Validated (5 fold, repeated 5 times) 
+## Summary of sample sizes: 695, 695, 694, 694, 694, 695, ... 
+## Resampling results across tuning parameters:
+## 
+##   k   Accuracy   Kappa    
+##    5  0.6868604  0.5665951
+##    7  0.7009287  0.5851071
+##    9  0.6990776  0.5817008
+##   11  0.6990723  0.5810318
+##   13  0.6967668  0.5777231
+##   15  0.6956239  0.5757095
+##   17  0.6939883  0.5731538
+##   19  0.6951456  0.5746427
+##   21  0.6935272  0.5723110
+##   23  0.6863847  0.5621102
+## 
+## Accuracy was used to select the optimal model using the largest value.
+## The final value used for the model was k = 7.</code></pre>
+<div class="sourceCode" id="cb852"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb852-1" data-line-number="1"><span class="kw">plot</span>(knnFit)</a></code></pre></div>
+<p><img src="20-solutions-use-case-1_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+</div>
+<div id="svm-1" class="section level3">
+<h3><span class="header-section-number">G.4.3</span> SVM</h3>
+<p>Train SVM model with all variables:</p>
+<div class="sourceCode" id="cb853"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb853-1" data-line-number="1">svmFit &lt;-<span class="st"> </span><span class="kw">train</span>(morphologyTrain, stageTrain,</a>
+<a class="sourceLine" id="cb853-2" data-line-number="2">                <span class="dt">method=</span>svmRadialE1071,</a>
+<a class="sourceLine" id="cb853-3" data-line-number="3">                <span class="dt">preProcess =</span> <span class="kw">c</span>(<span class="st">&quot;center&quot;</span>, <span class="st">&quot;scale&quot;</span>),</a>
+<a class="sourceLine" id="cb853-4" data-line-number="4">                <span class="co">#tuneGrid=tuneParam,</span></a>
+<a class="sourceLine" id="cb853-5" data-line-number="5">                <span class="dt">tuneLength=</span><span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb853-6" data-line-number="6">                <span class="dt">trControl=</span>train_ctrl_stage)</a>
+<a class="sourceLine" id="cb853-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb853-8" data-line-number="8">svmFit</a></code></pre></div>
+<pre><code>## Support Vector Machines with Radial Kernel - e1071 
+## 
+## 868 samples
+##  23 predictor
+##   4 classes: &#39;early trophozoite&#39;, &#39;late trophozoite&#39;, &#39;schizont&#39;, &#39;uninfected&#39; 
+## 
+## Pre-processing: centered (23), scaled (23) 
+## Resampling: Cross-Validated (5 fold, repeated 5 times) 
+## Summary of sample sizes: 695, 694, 694, 694, 695, 695, ... 
+## Resampling results across tuning parameters:
+## 
+##   cost    Accuracy   Kappa    
+##     0.25  0.6965183  0.5770470
+##     0.50  0.7131020  0.6018203
+##     1.00  0.7213926  0.6141816
+##     2.00  0.7220875  0.6157211
+##     4.00  0.7292154  0.6260607
+##     8.00  0.7333785  0.6326331
+##    16.00  0.7241711  0.6206293
+##    32.00  0.7094464  0.6008159
+##    64.00  0.6972345  0.5847166
+##   128.00  0.6903300  0.5758449
+## 
+## Accuracy was used to select the optimal model using the largest value.
+## The final value used for the model was cost = 8.</code></pre>
+<div class="sourceCode" id="cb855"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb855-1" data-line-number="1"><span class="kw">plot</span>(svmFit, <span class="dt">scales =</span> <span class="kw">list</span>(<span class="dt">x =</span> <span class="kw">list</span>(<span class="dt">log =</span><span class="dv">2</span>)))</a></code></pre></div>
+<p><img src="20-solutions-use-case-1_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+</div>
+<div id="decision-tree-1" class="section level3">
+<h3><span class="header-section-number">G.4.4</span> Decision tree</h3>
+<p>Train decision tree model with all variables:</p>
+<div class="sourceCode" id="cb856"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb856-1" data-line-number="1">dtFit &lt;-<span class="st"> </span><span class="kw">train</span>(morphologyTrain, stageTrain,</a>
+<a class="sourceLine" id="cb856-2" data-line-number="2">                <span class="dt">method=</span><span class="st">&quot;rpart&quot;</span>,</a>
+<a class="sourceLine" id="cb856-3" data-line-number="3">                <span class="dt">preProcess =</span> <span class="kw">c</span>(<span class="st">&quot;center&quot;</span>, <span class="st">&quot;scale&quot;</span>),</a>
+<a class="sourceLine" id="cb856-4" data-line-number="4">                <span class="co">#tuneGrid=tuneParam,</span></a>
+<a class="sourceLine" id="cb856-5" data-line-number="5">                <span class="dt">tuneLength=</span><span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb856-6" data-line-number="6">                <span class="dt">trControl=</span>train_ctrl_stage)</a>
+<a class="sourceLine" id="cb856-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb856-8" data-line-number="8">dtFit</a></code></pre></div>
+<pre><code>## CART 
+## 
+## 868 samples
+##  23 predictor
+##   4 classes: &#39;early trophozoite&#39;, &#39;late trophozoite&#39;, &#39;schizont&#39;, &#39;uninfected&#39; 
+## 
+## Pre-processing: centered (23), scaled (23) 
+## Resampling: Cross-Validated (5 fold, repeated 5 times) 
+## Summary of sample sizes: 695, 694, 694, 694, 695, 695, ... 
+## Resampling results across tuning parameters:
+## 
+##   cp           Accuracy   Kappa    
+##   0.004498270  0.6882662  0.5716210
+##   0.005190311  0.6905585  0.5747141
+##   0.006920415  0.6988530  0.5860335
+##   0.012110727  0.6960917  0.5831319
+##   0.013840830  0.6972398  0.5845125
+##   0.015570934  0.6949355  0.5809362
+##   0.025951557  0.6898488  0.5724806
+##   0.031141869  0.6820128  0.5595580
+##   0.119377163  0.6145431  0.4549600
+##   0.399653979  0.4920449  0.2576226
+## 
+## Accuracy was used to select the optimal model using the largest value.
+## The final value used for the model was cp = 0.006920415.</code></pre>
+<div class="sourceCode" id="cb858"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb858-1" data-line-number="1"><span class="kw">plot</span>(dtFit)</a></code></pre></div>
+<p><img src="20-solutions-use-case-1_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<div class="sourceCode" id="cb859"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb859-1" data-line-number="1"><span class="kw">prp</span>(dtFit<span class="op">$</span>finalModel)</a></code></pre></div>
+<p><img src="20-solutions-use-case-1_files/figure-html/unnamed-chunk-28-2.png" width="672" /></p>
+</div>
+<div id="random-forest-1" class="section level3">
+<h3><span class="header-section-number">G.4.5</span> Random forest</h3>
+<p>Train random forest model with all variables:</p>
+<div class="sourceCode" id="cb860"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb860-1" data-line-number="1">rfFit &lt;-<span class="st"> </span><span class="kw">train</span>(morphologyTrain, stageTrain,</a>
+<a class="sourceLine" id="cb860-2" data-line-number="2">                <span class="dt">method=</span><span class="st">&quot;rf&quot;</span>,</a>
+<a class="sourceLine" id="cb860-3" data-line-number="3">                <span class="dt">preProcess =</span> <span class="kw">c</span>(<span class="st">&quot;center&quot;</span>, <span class="st">&quot;scale&quot;</span>),</a>
+<a class="sourceLine" id="cb860-4" data-line-number="4">                <span class="co">#tuneGrid=tuneParam,</span></a>
+<a class="sourceLine" id="cb860-5" data-line-number="5">                <span class="dt">tuneLength=</span><span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb860-6" data-line-number="6">                <span class="dt">trControl=</span>train_ctrl_stage)</a>
+<a class="sourceLine" id="cb860-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb860-8" data-line-number="8">rfFit</a></code></pre></div>
+<pre><code>## Random Forest 
+## 
+## 868 samples
+##  23 predictor
+##   4 classes: &#39;early trophozoite&#39;, &#39;late trophozoite&#39;, &#39;schizont&#39;, &#39;uninfected&#39; 
+## 
+## Pre-processing: centered (23), scaled (23) 
+## Resampling: Cross-Validated (5 fold, repeated 5 times) 
+## Summary of sample sizes: 695, 694, 694, 694, 695, 695, ... 
+## Resampling results across tuning parameters:
+## 
+##   mtry  Accuracy   Kappa    
+##    2    0.7228208  0.6176325
+##    4    0.7221246  0.6173189
+##    6    0.7274200  0.6246213
+##    9    0.7219067  0.6171952
+##   11    0.7202750  0.6149614
+##   13    0.7170539  0.6105192
+##   16    0.7209752  0.6161230
+##   18    0.7235093  0.6196690
+##   20    0.7230323  0.6190254
+##   23    0.7232833  0.6195279
+## 
+## Accuracy was used to select the optimal model using the largest value.
+## The final value used for the model was mtry = 6.</code></pre>
+<div class="sourceCode" id="cb862"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb862-1" data-line-number="1"><span class="kw">plot</span>(rfFit)</a></code></pre></div>
+<p><img src="20-solutions-use-case-1_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+</div>
+<div id="compare-models-1" class="section level3">
+<h3><span class="header-section-number">G.4.6</span> Compare models</h3>
+<p>Make a list of our models</p>
+<div class="sourceCode" id="cb863"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb863-1" data-line-number="1">model_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">knn=</span>knnFit,</a>
+<a class="sourceLine" id="cb863-2" data-line-number="2">                   <span class="dt">svm=</span>svmFit,</a>
+<a class="sourceLine" id="cb863-3" data-line-number="3">                   <span class="dt">decisionTree=</span>dtFit,</a>
+<a class="sourceLine" id="cb863-4" data-line-number="4">                   <span class="dt">randomForest=</span>rfFit)</a></code></pre></div>
+<p>Collect resampling results for each model</p>
+<div class="sourceCode" id="cb864"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb864-1" data-line-number="1">resamps &lt;-<span class="st"> </span><span class="kw">resamples</span>(model_list)</a>
+<a class="sourceLine" id="cb864-2" data-line-number="2">resamps</a></code></pre></div>
+<pre><code>## 
+## Call:
+## resamples.default(x = model_list)
+## 
+## Models: knn, svm, decisionTree, randomForest 
+## Number of resamples: 25 
+## Performance metrics: Accuracy, Kappa 
+## Time estimates for: everything, final model fit</code></pre>
+<div class="sourceCode" id="cb866"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb866-1" data-line-number="1"><span class="kw">summary</span>(resamps)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## summary.resamples(object = resamps)
+## 
+## Models: knn, svm, decisionTree, randomForest 
+## Number of resamples: 25 
+## 
+## Accuracy 
+##                   Min.   1st Qu.    Median      Mean   3rd Qu.      Max. NA&#39;s
+## knn          0.6494253 0.6896552 0.6994220 0.7009287 0.7109827 0.7456647    0
+## svm          0.6705202 0.7241379 0.7341040 0.7333785 0.7456647 0.7873563    0
+## decisionTree 0.6473988 0.6705202 0.7011494 0.6988530 0.7225434 0.7572254    0
+## randomForest 0.6763006 0.7011494 0.7298851 0.7274200 0.7514451 0.7919075    0
+## 
+## Kappa 
+##                   Min.   1st Qu.    Median      Mean   3rd Qu.      Max. NA&#39;s
+## knn          0.5123139 0.5676422 0.5827265 0.5851071 0.5998149 0.6473804    0
+## svm          0.5440211 0.6195682 0.6331301 0.6326331 0.6489416 0.7081066    0
+## decisionTree 0.5120226 0.5490818 0.5853726 0.5860335 0.6163371 0.6688995    0
+## randomForest 0.5542058 0.5873584 0.6284754 0.6246213 0.6584168 0.7119734    0</code></pre>
+<div class="sourceCode" id="cb868"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb868-1" data-line-number="1"><span class="kw">bwplot</span>(resamps)</a></code></pre></div>
+<p><img src="20-solutions-use-case-1_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+</div>
+<div id="predict-test-set-using-our-best-model-1" class="section level3">
+<h3><span class="header-section-number">G.4.7</span> Predict test set using our best model</h3>
+<div class="sourceCode" id="cb869"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb869-1" data-line-number="1">test_pred &lt;-<span class="st"> </span><span class="kw">predict</span>(rfFit, morphologyTest)</a>
+<a class="sourceLine" id="cb869-2" data-line-number="2"><span class="kw">confusionMatrix</span>(test_pred, stageTest)</a></code></pre></div>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##                    Reference
+## Prediction          early trophozoite late trophozoite schizont uninfected
+##   early trophozoite                27                9        6          3
+##   late trophozoite                 10               54       29          1
+##   schizont                         13               31       66          0
+##   uninfected                        1                0        0        119
+## 
+## Overall Statistics
+##                                           
+##                Accuracy : 0.7209          
+##                  95% CI : (0.6721, 0.7661)
+##     No Information Rate : 0.3333          
+##     P-Value [Acc &gt; NIR] : &lt; 2.2e-16       
+##                                           
+##                   Kappa : 0.6167          
+##                                           
+##  Mcnemar&#39;s Test P-Value : NA              
+## 
+## Statistics by Class:
+## 
+##                      Class: early trophozoite Class: late trophozoite
+## Sensitivity                           0.52941                  0.5745
+## Specificity                           0.94340                  0.8545
+## Pos Pred Value                        0.60000                  0.5745
+## Neg Pred Value                        0.92593                  0.8545
+## Prevalence                            0.13821                  0.2547
+## Detection Rate                        0.07317                  0.1463
+## Detection Prevalence                  0.12195                  0.2547
+## Balanced Accuracy                     0.73640                  0.7145
+##                      Class: schizont Class: uninfected
+## Sensitivity                   0.6535            0.9675
+## Specificity                   0.8358            0.9959
+## Pos Pred Value                0.6000            0.9917
+## Neg Pred Value                0.8649            0.9839
+## Prevalence                    0.2737            0.3333
+## Detection Rate                0.1789            0.3225
+## Detection Prevalence          0.2981            0.3252
+## Balanced Accuracy             0.7446            0.9817</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="solutions-decision-trees.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="solutions-linear-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
